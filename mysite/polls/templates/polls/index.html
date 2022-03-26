@@ -1,0 +1,20 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+{% if latest_product_list %}
+    <ul>
+    {% for name in latest_product_list %}
+    <li><a href="{% url 'polls:detail' name.id %}">{{ name.name }}</a></li>    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<h1>Prodotti</h1>
+<ul>
+{% for product in object_list %}
+    <li>{{ product.pub_date|date }} - {{ product.headline }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>

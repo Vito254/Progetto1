@@ -1,0 +1,9 @@
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for category in question.category_set.all %}
+    <li>{{ category.category_text }} -- {{ category.description }} description{{ category.description|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' product.id %}">Vote again?</a>

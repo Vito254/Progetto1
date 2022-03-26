@@ -1,0 +1,17 @@
+<form action = "{% url 'polls:vote' question.id %}" method="post">
+    {%  csrf_token %}
+        <legend>
+            <h1>
+                {{ question.name }}
+            </h1>
+        </legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+    {% for category in question.category_set.all %}
+    <input type="radio" name="category" id="category{{ forloop.counter }}" value="{{ category.id }}">
+        <label for = "category {{ forloop.counter }}">{{ category.category_text }}</label>
+    <br>
+        {% endfor %}
+
+<input type="submit" value="Vote">
+</form>
